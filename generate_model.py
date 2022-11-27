@@ -27,7 +27,7 @@ class Model:
 
         print('Creating model....')
         clf = svm.SVC(kernel='linear')
-        clf.fit(list(X_train), y_train)
+        clf.fit(X_train, y_train)
 
         print('Predicting on test data....')
         y_pred = clf.predict(X_test)
