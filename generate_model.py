@@ -34,8 +34,8 @@ class Model:
         print('Accuracy: ', metrics.accuracy_score(y_test, y_pred))
 
         print('Saving the generated model....')
-        # with open('./trained-model.pkl', 'wb') as f:
-        #     pickle.dump(clf, f)
+        with open('./trained-model.pkl', 'wb') as f:
+            pickle.dump(clf, f)
 
         return clf
 
