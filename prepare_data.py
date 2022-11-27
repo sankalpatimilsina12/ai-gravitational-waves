@@ -56,11 +56,6 @@ class Data:
             bar.next()
         bar.finish()
 
-        # make all sfts of equal dimension / size
-        max_sft_len = len(max(data, key=len))
-        for i, d in enumerate(data):
-            data[i] = np.pad(d, (0, max_sft_len - len(d)), 'median')
-
         if read_dir == self.training_set_dir:
             return data, classification_labels
 

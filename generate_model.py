@@ -3,6 +3,7 @@ from sklearn import svm
 from sklearn import metrics
 import pickle
 from prepare_data import Data
+import numpy as np
 
 
 class Model:
@@ -14,6 +15,12 @@ class Model:
         data_model = Data()
         training_data, classification_labels = data_model.generate_sfts_data(
             for_dataset='TRAIN')
+
+        print('Preparing data....')
+        # make all sfts of equal dimension / size
+        max_sft_len = len(max(training_data, key=len))
+        for i, d in enumerate(training_data):
+            training_data[i] = np.pad(d, (0, max_sft_len - len(d)), 'median')
 
         X_train, X_test, y_train, y_test = train_test_split(
             training_data, classification_labels, test_size=0.20)
@@ -27,8 +34,8 @@ class Model:
         print('Accuracy: ', metrics.accuracy_score(y_test, y_pred))
 
         print('Saving the generated model....')
-        with open('./trained-model.pkl', 'wb') as f:
-            pickle.dump(clf, f)
+        # with open('./trained-model.pkl', 'wb') as f:
+        #     pickle.dump(clf, f)
 
         return clf
 
