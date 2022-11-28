@@ -22,6 +22,24 @@ class Data:
         self.testing_set = [f.replace('.hdf5', '') for f in listdir(
             self.testing_set_dir) if isfile(join(self.testing_set_dir, f)) and f.endswith(".hdf5")]
 
+    def generate_frequency_data(self):
+        frequencies = []
+        labels = []
+
+        bar = Bar(max=len(self.training_set))
+        for filename in self.training_set:
+            np.set_printoptions(threshold=np.inf)
+            f1 = h5py.File(self.training_set_dir + filename + '.hdf5', 'r+')
+            a_group_key1 = list(f1.keys())[0]
+            address_frequency_hz = a_group_key1 + '/frequency_Hz/'
+
+            frequencies.append(np.mean(f1[address_frequency_hz]))
+            labels.append(self.labels[filename])
+            bar.next()
+        bar.finish()
+
+        return frequencies, labels
+
     def generate_sfts_data(self, for_dataset='TRAIN'):
         data = []
         classification_labels = []
