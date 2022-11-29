@@ -5,6 +5,10 @@ The continuous gravitational waves are weak but long-lasting signals emitted by 
 
 This project aims to detect these continuous gravitational-wave signals. We develop a model sensitive enough to detect weak yet long-lasting signals emitted by rapidly-spinning neutron stars within noisy data.
 
+Frequency plot of input:
+
+![alt text](frequency-plot.png)
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
