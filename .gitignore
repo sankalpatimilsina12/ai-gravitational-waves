@@ -1,9 +1,5 @@
 __pycache__
-venv
-train
-test
-.bak
-*.pkl
 .DS_Store
-test_orig
-*.zip
+venv
+*.hdf5
+*.pkl
